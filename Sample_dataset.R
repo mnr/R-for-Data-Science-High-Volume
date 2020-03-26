@@ -21,10 +21,19 @@ if (!file.exists("UCS_Satellite_Database")) {
 
 readUCSSampleData <- function() {
   # import
-  UCS_Satellite_Database <-
+  # this version avoids the error...
+  # Warning message:
+  #   In scan(file = file, what = what, sep = sep, quote = quote, dec = dec,  :
+  #     invalid input found on input connection 'UCS_Satellite_Database'
+    UCS_Satellite_Database <-
     read.delim("../UCS_Satellite_Database", 
-               stringsAsFactors = FALSE,
-               fileEncoding = "latin1")
+               stringsAsFactors = FALSE)
+  
+  # this version was shipped with the course example files. The fileEncoding produces an error
+  #UCS_Satellite_Database <-
+  #  read.delim("../UCS_Satellite_Database", 
+  #             stringsAsFactors = FALSE,
+  #             fileEncoding = "latin1")
   
   # clean
   UCS_Satellite_Database$Launch.Mass..kg.. <-
